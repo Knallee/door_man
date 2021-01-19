@@ -16,7 +16,7 @@ volatile stepstick_control3_t *st_control3 = (volatile stepstick_control3_t *) P
 int main(void)
 {	
 	door_man_init();
-	    
+	    //test kw
     while (1) {
 		
     }
