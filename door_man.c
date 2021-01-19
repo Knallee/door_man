@@ -35,6 +35,7 @@ void door_man_init()
 	st_control3->ms3		= 1;
 	st_control3->n_enable	= 1;
 	
+	
 }
 
 void door_man_data_dir() 
