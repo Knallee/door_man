@@ -2,7 +2,7 @@
  * door_man.c
  *
  * Created: 2021-01-18 21:13:43
- * Author : Knalle
+ * Author : Knalle and Krille W
  */ 
 
 #include <avr/io.h>
