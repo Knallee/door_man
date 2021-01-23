@@ -10,6 +10,7 @@
 #include <avr/io.h>
 #include "atmega1284p.h"
 #include "door_man.h"
+#include "bldc.h"
 #include <util/delay.h>
 
 volatile stepstick_control_t *stepstick				= (volatile stepstick_control_t *) PORTA_ADDR;
@@ -32,11 +33,11 @@ int main(void)
 void door_man_init()
 {
 	
-	stepstick_data_dir_t->n_enable	= OUTPUT;
-	stepstick_data_dir_t->ms_res	= 0b111;
-	stepstick_data_dir_t->n_reset	= OUTPUT;
-	stepstick_data_dir_t->n_sleep	= OUTPUT;
-	stepstick_data_dir_t->dir		= OUTPUT;
+	stepstick_data_dir->n_enable	= OUTPUT;
+	stepstick_data_dir->ms_res		= 0b111;
+	stepstick_data_dir->n_reset		= OUTPUT;
+	stepstick_data_dir->n_sleep		= OUTPUT;
+	stepstick_data_dir->dir			= OUTPUT;
 	
 
 	
