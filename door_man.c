@@ -5,13 +5,17 @@
  * Author : Knalle and Krille W
  */ 
 
+#define F_CPU	16000000UL
+
 #include <avr/io.h>
 #include "atmega1284p.h"
 #include "door_man.h"
+#include <util/delay.h>
 
-volatile stepstick_control1_t *st_control1 = (volatile stepstick_control1_t *) PORTB_ADDR;
-volatile stepstick_control2_t *st_control2 = (volatile stepstick_control2_t *) PORTD_ADDR;
-volatile stepstick_control3_t *st_control3 = (volatile stepstick_control3_t *) PORTC_ADDR;
+volatile stepstick_control_t *stepstick				= (volatile stepstick_control_t *) PORTA_ADDR;
+volatile stepstick_data_dir_t *stepstick_data_dir	= (volatile stepstick_data_dir_t *) DDRA_ADDR;
+
+
 
 int main(void)
 {	
@@ -19,30 +23,23 @@ int main(void)
 	    //test kw
     while (1) {
 		
+		
+		_delay_us(1000);
+		
     }
 }
 
 void door_man_init()
 {
-	door_man_data_dir();
 	
-	st_control1->dir		= 1;
-	st_control1->step		= 1;
-	st_control2->n_sleep	= 1;
-	st_control2->n_reset	= 1;
-	st_control3->ms1		= 1;
-	st_control3->ms2		= 1;
-	st_control3->ms3		= 1;
-	st_control3->n_enable	= 1;
+	stepstick_data_dir_t->n_enable	= OUTPUT;
+	stepstick_data_dir_t->ms_res	= 0b111;
+	stepstick_data_dir_t->n_reset	= OUTPUT;
+	stepstick_data_dir_t->n_sleep	= OUTPUT;
+	stepstick_data_dir_t->dir		= OUTPUT;
+	
+
 	
 	
 }
 
-void door_man_data_dir() 
-{
-	
-	DDRB |= (1 << DIR)		| (1 << STEP);
-	DDRD |= (1 << N_SLEEP)	| (1 << N_RST);
-	DDRC |= (1 << MS1)		| (1 << MS2) | (1 << MS3) | (1 << N_ENABLE); 
-	
-}
