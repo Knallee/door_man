@@ -11,7 +11,7 @@
 
 #include <avr/io.h>
 #include "atmega1284p.h"
-
+#include "timer1.h"
 // ###############################################
 // Stepstick pin			AVR pin
 // ###############################################
@@ -25,10 +25,11 @@
 // ###############################################
 
 
-#define OUTPUT		(1)
-#define INPUT		(0)
+#define OUTPUT		(1)				///< Sets pin to act on output
+#define INPUT		(0)				///<
 
-
+#define STOP		(0)
+#define START		(1)
 
 #define N_ENA		(0)
 #define MS1			(1)
@@ -38,7 +39,8 @@
 #define N_SLEEP		(5)
 #define DIR			(6)
 
-// volatile uint8_t step		: 1;	/**< The motor steps at the positive flank. */
+uint16_t stepstick_period;				/**< Controls the period time of the stepstick. */
+
 
 typedef struct stepstick_control_t {
 	
@@ -62,7 +64,31 @@ typedef struct stepstick_data_dir_t {
 	
 } stepstick_data_dir_t;
 
-
+/**
+*	\brief Initializes the stepstick stepper circuit
+**/
 void stepstick_init();
+/**
+*	\brief Sets and changes direction of the step motor
+*	@param dir is the desired direction
+**/
+void stepstick_set_direction(uint8_t dir);
+/**
+*	\brief Stops the stepstick circuit, and thus the also the motor
+*	@param start_stop is the parameter to start or stop the engine. 
+*	Use defined values START, STOP
+**/
+void stepstick_start_stop(uint8_t start_stop);
+
+/**
+*	\brief Returns the period time that sets the stepstick speed.
+**/
+uint16_t get_stepstick_speed();
+/**
+*	\brief Sets the period time that controls the stepstick speed.
+*	@param is the value of the period time.
+**/
+void set_stepstick_speed(uint16_t stepstick_speed);
+
 
 #endif /* STEPSTICK_H_ */

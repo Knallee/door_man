@@ -11,6 +11,8 @@ volatile tccr3a_reg_t *timer3_control_reg_a	= (volatile tccr3a_reg_t *) TCCR3A_A
 volatile tccr3b_reg_t *timer3_control_reg_b	= (volatile tccr3b_reg_t *) TCCR3B_ADDR;
 volatile tccr3c_reg_t *timer3_control_reg_c	= (volatile tccr3c_reg_t *) TCCR3C_ADDR;
 
+
+
 void timer3_init() {
 	
 	timer3_control_reg_a->comp_match_a		= TIMER3_CLEAR_ON_MATCH;
