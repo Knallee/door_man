@@ -38,3 +38,26 @@ void timer1_set_fast_pwm_duty_cycle_ch_b(uint16_t duty_cycle)
 {
 	OCR1B = duty_cycle;
 }
+
+uint8_t timer1_get_prescaler(){
+	switch(timer1_control_reg_b->prescaler){
+		case TIMER1_PRESCALER_DIV1:
+			return 1;
+			break;
+		case TIMER1_PRESCALER_DIV8:
+			return 8;
+			break;
+		case TIMER1_PRESCALER_DIV64:
+			return 64;
+			break;
+		case TIMER1_PRESCALER_DIV256:
+			return 256;
+			break;
+		case TIMER1_PRESCALER_DIV1024:
+			return 1024;
+			break;
+		default:
+			return 1;
+	}
+	return 1;
+}

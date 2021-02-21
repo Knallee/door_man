@@ -89,6 +89,11 @@ uint16_t get_stepstick_speed();
 *	@param is the value of the period time.
 **/
 void set_stepstick_speed(uint16_t stepstick_speed);
-
+/**
+*	\brief Returns the rotational degree for each step, with microstepping taken into consideration.
+*	This is written for a stepper motor with a full step of 1.8 degrees.
+*	If ms_res in stepstick_control_t has not been initiated, the function will return 1.8 degrees per default.
+**/
+int get_stepstick_rotation_deg();
 
 #endif /* STEPSTICK_H_ */

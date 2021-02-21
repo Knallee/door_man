@@ -5,7 +5,7 @@
  *  Author: Knalle
  */ 
 
-
+#include "math.h"
 #include "stepstick.h"
 
 
@@ -46,4 +46,25 @@ void set_stepstick_speed(uint16_t stepstick_speed){
 
 uint16_t get_stepstick_speed(){
 	return stepstick_period;
+}
+
+uint8_t get_stepstick_rpm(){
+	//uint8_t stepstick_rpm = floor((get_stepstick_rotation_deg()/((1/(16*10^6)*timer1_get_prescaler())*stepstick_period))*60/360);
+	return floor((get_stepstick_rotation_deg()/((1/(16*10^6)*timer1_get_prescaler())*stepstick_period))*60/360);
+}
+
+int get_stepstick_rotation_deg(){
+	switch(stepstick->ms_res){
+		case 0b000:
+			return 1.8;
+		case 0b100:
+			return 1.8/2;
+		case 0b010:
+			return 1.8/4;
+		case 0b110:
+			return 1.8/8;
+		case 0b111:
+			return 1.8/16;
+	}
+	return 1.8;
 }

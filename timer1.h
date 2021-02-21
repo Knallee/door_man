@@ -86,8 +86,12 @@ void timer1_set_fast_pwm_duty_cycle_ch_a(uint16_t duty_cycle);
 *	@param duty_cycle is used to set which the period time
 **/
 void timer1_set_fast_pwm_duty_cycle_ch_b(uint16_t duty_cycle);
-
-
+/**
+*	\brief Returns the set prescaler of timer1 as an integer. 
+*	If no value has been put into the timer1 structs prescaler, it will return
+*	1 as a default value.
+**/
+uint8_t timer1_get_prescaler();
 
 
 
